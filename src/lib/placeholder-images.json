@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "cbse-emblem",
+      "description": "CBSE Official Emblem",
+      "imageUrl": "https://picsum.photos/seed/cbse-emblem/200/200",
+      "imageHint": "CBSE Emblem"
+    }
+  ]
 }
