@@ -32,7 +32,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-[#f0f0f0] text-foreground font-serif;
+    @apply bg-[#ECF6F6] text-foreground;
+  }
+  .font-serif {
+    font-family: 'Noto Serif', 'Times New Roman', serif;
   }
 }
 
@@ -42,5 +45,21 @@
   }
   body {
     background-color: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  main {
+    background-color: white !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .container-print {
+    width: 100% !important;
+    max-width: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 20px !important;
   }
 }

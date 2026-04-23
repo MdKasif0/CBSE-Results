@@ -39,20 +39,25 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
     };
 
     const generateResult = (): Subject[] => {
+      // English Core [301]
       const engTheory = getRandom(50, 60);
       const engTotal = engTheory + 20;
 
+      // Physics [042] - Fail scenario
       const phyTheory = getRandom(5, 10);
       const phyPrac = getRandom(20, 25);
       const phyTotal = phyTheory + phyPrac;
 
+      // Chemistry [043]
       const chemTheory = getRandom(30, 50);
       const chemTotal = chemTheory + 30;
 
+      // Mathematics [041]
       const mathTheory = getRandom(30, 40);
       const mathPrac = getRandom(20, 25);
       const mathTotal = mathTheory + mathPrac;
 
+      // Music [031]
       const musicTheory = getRandom(10, 20);
       const musicPrac = getRandom(60, 70);
       const musicTotal = musicTheory + musicPrac;
@@ -82,36 +87,36 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       <div className="flex justify-between items-center mb-4 no-print">
         <button 
           onClick={() => window.print()}
-          className="text-sm text-blue-800 hover:underline font-bold bg-white border border-gray-300 px-3 py-1 shadow-sm"
+          className="text-[13px] text-blue-800 hover:underline font-bold bg-white border border-gray-300 px-3 py-1 shadow-sm transition-colors hover:bg-gray-50"
         >
           Print this page
         </button>
         <span className="text-xs text-gray-500 font-bold italic">http://cbseresults.nic.in</span>
       </div>
 
-      <div className="bg-white p-6 md:p-10 border border-gray-300 shadow-sm mb-6">
+      <div className="bg-white p-6 md:p-10 border border-gray-300 shadow-sm mb-6 container-print">
         <div className="text-center mb-8">
           <h4 className="text-[#000080] font-bold text-lg uppercase mb-1">Senior School Certificate Examination (Class XII) Results 2024</h4>
         </div>
 
-        <div className="grid grid-cols-1 gap-2 mb-8 text-[15px]">
-          <div className="flex border-b border-gray-100 py-1">
+        <div className="grid grid-cols-1 gap-1 mb-8 text-[15px]">
+          <div className="flex border-b border-gray-100 py-1.5 group cursor-help">
             <span className="w-48 font-bold text-gray-700">Roll No:</span>
-            <span className="font-bold">{data.rollNo}</span>
+            <span className="font-bold blur-[3px] group-hover:blur-none transition-all duration-300">{data.rollNo}</span>
           </div>
-          <div className="flex border-b border-gray-100 py-1">
+          <div className="flex border-b border-gray-100 py-1.5 group cursor-help">
             <span className="w-48 font-bold text-gray-700">Candidate Name:</span>
-            <span className="font-bold uppercase">{data.candidateName}</span>
+            <span className="font-bold uppercase blur-[3px] group-hover:blur-none transition-all duration-300">{data.candidateName}</span>
           </div>
-          <div className="flex border-b border-gray-100 py-1">
+          <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">Mother's Name:</span>
             <span className="font-bold uppercase">SAVITA DEVI</span>
           </div>
-          <div className="flex border-b border-gray-100 py-1">
+          <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">Father's Name:</span>
             <span className="font-bold uppercase">RAJESH KUMAR</span>
           </div>
-          <div className="flex border-b border-gray-100 py-1">
+          <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">School's Name:</span>
             <span className="font-bold uppercase">GOVT SR SEC SCHOOL</span>
           </div>
@@ -132,12 +137,12 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
             <TableBody>
               {subjects.map((sub, idx) => (
                 <TableRow key={idx} className={cn("hover:bg-transparent border-b border-gray-400", idx % 2 === 1 ? "bg-[#F9F9F9]" : "bg-white")}>
-                  <TableCell className="border-r border-gray-400 py-2 text-center font-bold">{sub.code}</TableCell>
-                  <TableCell className="border-r border-gray-400 py-2 font-bold uppercase">{sub.name}</TableCell>
-                  <TableCell className={cn("border-r border-gray-400 py-2 text-center font-bold", sub.isRed && "text-red-600")}>{sub.theory}</TableCell>
-                  <TableCell className="border-r border-gray-400 py-2 text-center font-bold">{sub.prac}</TableCell>
-                  <TableCell className={cn("border-r border-gray-400 py-2 text-center font-bold", sub.isRed ? "text-red-600" : "text-black")}>{sub.marks}</TableCell>
-                  <TableCell className={cn("py-2 text-center font-bold", sub.isRed && "text-red-600")}>{sub.grade}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2.5 text-center font-bold">{sub.code}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2.5 font-bold uppercase">{sub.name}</TableCell>
+                  <TableCell className={cn("border-r border-gray-400 py-2.5 text-center font-bold", sub.isRed && "text-red-600")}>{sub.theory}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2.5 text-center font-bold">{sub.prac}</TableCell>
+                  <TableCell className={cn("border-r border-gray-400 py-2.5 text-center font-bold", sub.isRed ? "text-red-600" : "text-black")}>{sub.marks}</TableCell>
+                  <TableCell className={cn("py-2.5 text-center font-bold", sub.isRed && "text-red-600")}>{sub.grade}</TableCell>
                 </TableRow>
               ))}
               {workSubjects.map((sub, idx) => (
@@ -151,7 +156,7 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
                 </TableRow>
               ))}
               <TableRow className="bg-[#003366] hover:bg-[#003366]">
-                <TableCell colSpan={6} className="py-2 text-center font-bold text-white text-base">
+                <TableCell colSpan={6} className="py-3 text-center font-bold text-white text-base">
                   Result : PASS
                 </TableCell>
               </TableRow>
@@ -165,18 +170,18 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
         </div>
       </div>
 
-      <div className="text-center space-y-2 mt-8">
+      <div className="text-center space-y-2 mt-8 no-print">
         <p className="text-sm font-bold text-gray-700">
           Brought to you by National Informatics Centre
         </p>
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest no-print">
+        <p className="text-[10px] text-gray-400 uppercase tracking-widest">
           Digital India — Power To Empower
         </p>
       </div>
       
       <div className="mt-12 p-4 bg-yellow-50 border border-yellow-200 text-center no-print">
         <h4 className="text-sm font-bold text-yellow-800 uppercase mb-1">Prank Mode Active</h4>
-        <p className="text-xs text-yellow-700 mb-2">This is a simulated result page for entertainment.</p>
+        <p className="text-xs text-yellow-700 mb-2">Personal details are blurred for privacy — hover over them to reveal. This result is simulated.</p>
         <button 
           onClick={() => window.location.reload()}
           className="bg-white border border-gray-300 text-gray-700 px-4 py-1 text-xs font-bold hover:bg-gray-50 shadow-sm"
