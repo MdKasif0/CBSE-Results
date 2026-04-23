@@ -1,0 +1,11 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "cbse-emblem",
+      "description": "CBSE Official Emblem",
+      "imageUrl": "/cbse-logo.png",
+      "imageHint": "CBSE Emblem"
+    }
+  ]
+}

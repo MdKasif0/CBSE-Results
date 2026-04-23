@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -31,7 +32,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       if (total >= 91) return 'A1';
       if (total >= 81) return 'A2';
       if (total >= 71) return 'B1';
-      if (total >= 81) return 'A2'; // Fallback for randomized ranges
       if (total >= 61) return 'B2';
       if (total >= 51) return 'C1';
       if (total >= 41) return 'C2';
@@ -104,7 +104,7 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
           </div>
           <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">School's Name:</span>
-            <span className="font-bold uppercase">{data.schoolName}</span>
+            <span className="font-bold uppercase">{data.schoolName.toUpperCase()}</span>
           </div>
         </div>
 
