@@ -29,13 +29,13 @@ export default function PortalHeader() {
         </div>
         <div className="text-right hidden md:block">
           <p className="text-sm font-bold text-gray-700 uppercase">
-            Examination Results 2024
+            Examination Results 2026
           </p>
         </div>
       </div>
       <div className="bg-[#009999] py-3 px-4 shadow-md">
         <h3 className="text-white font-bold text-center text-sm md:text-lg uppercase tracking-wider">
-          Senior School Certificate Examination (Class XII) Results 2024
+          Senior School Certificate Examination (Class XII) Results 2026
         </h3>
       </div>
     </header>

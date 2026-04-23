@@ -2,8 +2,8 @@ import type {Metadata} from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'CBSE Result 2024 — NIC',
-  description: 'Senior School Certificate Examination (Class XII) Results 2024',
+  title: 'CBSE Result 2026 — NIC',
+  description: 'Senior School Certificate Examination (Class XII) Results 2026',
 };
 
 export default function RootLayout({

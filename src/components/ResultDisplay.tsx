@@ -31,6 +31,8 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       if (total >= 91) return 'A1';
       if (total >= 81) return 'A2';
       if (total >= 71) return 'B1';
+      if (total >= 81) return 'A2'; // Slightly different logic per request mappings if needed, but using standard
+      if (total >= 71) return 'B1';
       if (total >= 61) return 'B2';
       if (total >= 51) return 'C1';
       if (total >= 41) return 'C2';
@@ -96,7 +98,7 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
 
       <div className="bg-white p-6 md:p-10 border border-gray-300 shadow-sm mb-6 container-print">
         <div className="text-center mb-8">
-          <h4 className="text-[#000080] font-bold text-lg uppercase mb-1">Senior School Certificate Examination (Class XII) Results 2024</h4>
+          <h4 className="text-[#000080] font-bold text-lg uppercase mb-1">Senior School Certificate Examination (Class XII) Results 2026</h4>
         </div>
 
         <div className="grid grid-cols-1 gap-1 mb-8 text-[15px]">
