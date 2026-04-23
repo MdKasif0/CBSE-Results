@@ -1,27 +1,126 @@
+
 "use client";
 
+import { useState, useEffect } from 'react';
 import { FormData } from './LoginPortal';
 import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { cn } from '@/lib/utils';
 
 interface ResultDisplayProps {
   data: FormData;
 }
 
+interface Subject {
+  code: string;
+  name: string;
+  theory: string;
+  prac: string;
+  marks: string;
+  grade: string;
+  isRed?: boolean;
+}
+
 export default function ResultDisplay({ data }: ResultDisplayProps) {
-  const subjects = [
-    { code: '301', name: 'ENGLISH CORE', theory: '079', prac: '020', marks: '099', grade: 'A1' },
-    { code: '042', name: 'PHYSICS', theory: '068', prac: '030', marks: '098', grade: 'A1' },
-    { code: '043', name: 'CHEMISTRY', theory: '067', prac: '030', marks: '097', grade: 'A1' },
-    { code: '041', name: 'MATHEMATICS', theory: '080', prac: '020', marks: '100', grade: 'A1' },
-    { code: '083', name: 'COMPUTER SCIENCE', theory: '070', prac: '030', marks: '100', grade: 'A1' },
-  ];
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const getRandom = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+    
+    const getGrade = (total: number) => {
+      if (total >= 91) return 'A1';
+      if (total >= 81) return 'A2';
+      if (total >= 71) return 'B1';
+      if (total >= 61) return 'B2';
+      if (total >= 51) return 'C1';
+      if (total >= 41) return 'C2';
+      if (total >= 33) return 'D';
+      return 'E';
+    };
+
+    const generateResult = (): Subject[] => {
+      // English Core [301]
+      const engTheory = getRandom(50, 60);
+      const engPrac = 20;
+      const engTotal = engTheory + engPrac;
+
+      // Physics [042]
+      const phyTheory = getRandom(5, 10);
+      const phyPrac = getRandom(20, 25);
+      const phyTotal = phyTheory + phyPrac;
+
+      // Chemistry [043]
+      const chemTheory = getRandom(30, 50);
+      const chemPrac = 30;
+      const chemTotal = chemTheory + chemPrac;
+
+      // Mathematics [041]
+      const mathTheory = getRandom(30, 40);
+      const mathPrac = getRandom(20, 25);
+      const mathTotal = mathTheory + mathPrac;
+
+      // Music [031]
+      const musicTheory = getRandom(10, 20);
+      const musicPrac = getRandom(60, 70);
+      const musicTotal = musicTheory + musicPrac;
+
+      return [
+        { 
+          code: '301', 
+          name: 'ENGLISH CORE', 
+          theory: String(engTheory).padStart(3, '0'), 
+          prac: String(engPrac).padStart(3, '0'), 
+          marks: String(engTotal).padStart(3, '0'), 
+          grade: getGrade(engTotal) 
+        },
+        { 
+          code: '042', 
+          name: 'PHYSICS', 
+          theory: String(phyTheory).padStart(3, '0'), 
+          prac: String(phyPrac).padStart(3, '0'), 
+          marks: String(phyTotal).padStart(3, '0'), 
+          grade: getGrade(phyTotal),
+          isRed: true
+        },
+        { 
+          code: '043', 
+          name: 'CHEMISTRY', 
+          theory: String(chemTheory).padStart(3, '0'), 
+          prac: String(chemPrac).padStart(3, '0'), 
+          marks: String(chemTotal).padStart(3, '0'), 
+          grade: getGrade(chemTotal) 
+        },
+        { 
+          code: '041', 
+          name: 'MATHEMATICS', 
+          theory: String(mathTheory).padStart(3, '0'), 
+          prac: String(mathPrac).padStart(3, '0'), 
+          marks: String(mathTotal).padStart(3, '0'), 
+          grade: getGrade(mathTotal) 
+        },
+        { 
+          code: '031', 
+          name: 'MUSIC', 
+          theory: String(musicTheory).padStart(3, '0'), 
+          prac: String(musicPrac).padStart(3, '0'), 
+          marks: String(musicTotal).padStart(3, '0'), 
+          grade: getGrade(musicTotal) 
+        },
+      ];
+    };
+
+    setSubjects(generateResult());
+  }, []);
 
   const workSubjects = [
     { code: '500', name: 'WORK EXPERIENCE', grade: 'A1' },
     { code: '502', name: 'PHY & HEALTH EDUCA', grade: 'A1' },
     { code: '503', name: 'GENERAL STUDIES', grade: 'A1' },
   ];
+
+  if (!isMounted) return null;
 
   return (
     <div className="max-w-5xl mx-auto mt-6 px-4 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -35,7 +134,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       <Card className="shadow-none border-none bg-transparent rounded-none">
         <CardContent className="p-0">
           <div className="space-y-6">
-            {/* Candidate Info Block */}
             <div className="grid grid-cols-1 md:grid-cols-1 gap-1 text-sm md:text-base font-medium">
               <div className="flex">
                 <span className="w-40 md:w-48 text-gray-800">Roll No:</span>
@@ -59,7 +157,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
               </div>
             </div>
 
-            {/* Marks Table */}
             <div className="overflow-x-auto">
               <Table className="border border-[#000080]/30 min-w-[600px]">
                 <TableHeader className="bg-[#000080]">
@@ -77,10 +174,16 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
                     <TableRow key={idx} className="hover:bg-gray-50 border-b border-gray-200">
                       <TableCell className="border-r border-gray-200 py-2 text-center text-xs font-medium">{sub.code}</TableCell>
                       <TableCell className="border-r border-gray-200 py-2 text-xs font-medium uppercase">{sub.name}</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs">{sub.theory}</TableCell>
+                      <TableCell className={cn("border-r border-gray-200 py-2 text-center text-xs", sub.isRed && "text-red-600 font-bold")}>
+                        {sub.theory}
+                      </TableCell>
                       <TableCell className="border-r border-gray-200 py-2 text-center text-xs">{sub.prac}</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs font-bold text-[#000080]">{sub.marks}</TableCell>
-                      <TableCell className="py-2 text-center text-xs font-bold">{sub.grade}</TableCell>
+                      <TableCell className={cn("border-r border-gray-200 py-2 text-center text-xs font-bold", sub.isRed ? "text-red-600" : "text-[#000080]")}>
+                        {sub.marks}
+                      </TableCell>
+                      <TableCell className={cn("py-2 text-center text-xs font-bold", sub.isRed && "text-red-600")}>
+                        {sub.grade}
+                      </TableCell>
                     </TableRow>
                   ))}
                   
@@ -95,20 +198,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
                     </TableRow>
                   ))}
 
-                  {/* Additional Subject Row */}
-                  <TableRow className="bg-gray-50 border-b border-gray-200">
-                    <TableCell colSpan={6} className="py-1 text-[10px] font-bold text-gray-600 px-4">Additional Subject</TableCell>
-                  </TableRow>
-                  <TableRow className="hover:bg-gray-50 border-b border-gray-200">
-                    <TableCell className="border-r border-gray-200 py-2 text-center text-xs font-medium">041</TableCell>
-                    <TableCell className="border-r border-gray-200 py-2 text-xs font-medium uppercase">MATHEMATICS</TableCell>
-                    <TableCell className="border-r border-gray-200 py-2 text-center text-xs">080</TableCell>
-                    <TableCell className="border-r border-gray-200 py-2 text-center text-xs">020</TableCell>
-                    <TableCell className="border-r border-gray-200 py-2 text-center text-xs font-bold text-[#000080]">100</TableCell>
-                    <TableCell className="py-2 text-center text-xs font-bold">A1</TableCell>
-                  </TableRow>
-
-                  {/* Result Footer Row */}
                   <TableRow className="bg-[#000080] border-t-2 border-[#000080]">
                     <TableCell colSpan={6} className="py-2 text-center font-bold text-white text-sm">
                       Result : PASS
@@ -125,7 +214,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
               </p>
             </div>
 
-            {/* Print and Back Actions */}
             <div className="flex flex-col items-center gap-4 mt-12 no-print">
               <button 
                 onClick={() => window.print()}
