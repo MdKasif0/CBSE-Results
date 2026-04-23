@@ -59,6 +59,11 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
                 id="rollNo"
                 name="rollNo"
                 required
+                type="text"
+                inputMode="numeric"
+                pattern="\d{8}"
+                title="Roll Number must be exactly 8 digits"
+                maxLength={8}
                 className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.rollNo}
                 onChange={handleChange}
@@ -80,6 +85,8 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
                 name="dob"
                 placeholder="dd/mm/yyyy"
                 required
+                pattern="\d{2}/\d{2}/\d{4}"
+                title="Date of Birth must be in dd/mm/yyyy format"
                 className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.dob}
                 onChange={handleChange}
