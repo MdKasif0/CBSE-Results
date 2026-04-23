@@ -1,9 +1,7 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
 import { FormData } from './LoginPortal';
-import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { cn } from '@/lib/utils';
 
@@ -41,73 +39,30 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
     };
 
     const generateResult = (): Subject[] => {
-      // English Core [301]
       const engTheory = getRandom(50, 60);
-      const engPrac = 20;
-      const engTotal = engTheory + engPrac;
+      const engTotal = engTheory + 20;
 
-      // Physics [042]
       const phyTheory = getRandom(5, 10);
       const phyPrac = getRandom(20, 25);
       const phyTotal = phyTheory + phyPrac;
 
-      // Chemistry [043]
       const chemTheory = getRandom(30, 50);
-      const chemPrac = 30;
-      const chemTotal = chemTheory + chemPrac;
+      const chemTotal = chemTheory + 30;
 
-      // Mathematics [041]
       const mathTheory = getRandom(30, 40);
       const mathPrac = getRandom(20, 25);
       const mathTotal = mathTheory + mathPrac;
 
-      // Music [031]
       const musicTheory = getRandom(10, 20);
       const musicPrac = getRandom(60, 70);
       const musicTotal = musicTheory + musicPrac;
 
       return [
-        { 
-          code: '301', 
-          name: 'ENGLISH CORE', 
-          theory: String(engTheory).padStart(3, '0'), 
-          prac: String(engPrac).padStart(3, '0'), 
-          marks: String(engTotal).padStart(3, '0'), 
-          grade: getGrade(engTotal) 
-        },
-        { 
-          code: '042', 
-          name: 'PHYSICS', 
-          theory: String(phyTheory).padStart(3, '0'), 
-          prac: String(phyPrac).padStart(3, '0'), 
-          marks: String(phyTotal).padStart(3, '0'), 
-          grade: getGrade(phyTotal),
-          isRed: true
-        },
-        { 
-          code: '043', 
-          name: 'CHEMISTRY', 
-          theory: String(chemTheory).padStart(3, '0'), 
-          prac: String(chemPrac).padStart(3, '0'), 
-          marks: String(chemTotal).padStart(3, '0'), 
-          grade: getGrade(chemTotal) 
-        },
-        { 
-          code: '041', 
-          name: 'MATHEMATICS', 
-          theory: String(mathTheory).padStart(3, '0'), 
-          prac: String(mathPrac).padStart(3, '0'), 
-          marks: String(mathTotal).padStart(3, '0'), 
-          grade: getGrade(mathTotal) 
-        },
-        { 
-          code: '031', 
-          name: 'MUSIC', 
-          theory: String(musicTheory).padStart(3, '0'), 
-          prac: String(musicPrac).padStart(3, '0'), 
-          marks: String(musicTotal).padStart(3, '0'), 
-          grade: getGrade(musicTotal) 
-        },
+        { code: '301', name: 'ENGLISH CORE', theory: String(engTheory).padStart(3, '0'), prac: '020', marks: String(engTotal).padStart(3, '0'), grade: getGrade(engTotal) },
+        { code: '042', name: 'PHYSICS', theory: String(phyTheory).padStart(3, '0'), prac: String(phyPrac).padStart(3, '0'), marks: String(phyTotal).padStart(3, '0'), grade: getGrade(phyTotal), isRed: true },
+        { code: '043', name: 'CHEMISTRY', theory: String(chemTheory).padStart(3, '0'), prac: '030', marks: String(chemTotal).padStart(3, '0'), grade: getGrade(chemTotal) },
+        { code: '041', name: 'MATHEMATICS', theory: String(mathTheory).padStart(3, '0'), prac: String(mathPrac).padStart(3, '0'), marks: String(mathTotal).padStart(3, '0'), grade: getGrade(mathTotal) },
+        { code: '031', name: 'MUSIC', theory: String(musicTheory).padStart(3, '0'), prac: String(musicPrac).padStart(3, '0'), marks: String(musicTotal).padStart(3, '0'), grade: getGrade(musicTotal) },
       ];
     };
 
@@ -123,124 +78,111 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
   if (!isMounted) return null;
 
   return (
-    <div className="max-w-5xl mx-auto mt-6 px-4 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="text-center mb-6 space-y-1">
-        <h4 className="text-[#000080] font-bold text-sm md:text-base uppercase">Examination Results</h4>
-        <h3 className="text-[#000080] font-bold text-base md:text-lg">
-          Senior School Certificate Examination (Class XII) Results 2024
-        </h3>
+    <div className="max-w-5xl mx-auto mt-4 px-4 pb-12 font-serif text-black">
+      <div className="flex justify-between items-center mb-4 no-print">
+        <button 
+          onClick={() => window.print()}
+          className="text-sm text-blue-800 hover:underline font-bold bg-white border border-gray-300 px-3 py-1 shadow-sm"
+        >
+          Print this page
+        </button>
+        <span className="text-xs text-gray-500 font-bold italic">http://cbseresults.nic.in</span>
       </div>
 
-      <Card className="shadow-none border-none bg-transparent rounded-none">
-        <CardContent className="p-0">
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-1 text-sm md:text-base font-medium">
-              <div className="flex">
-                <span className="w-40 md:w-48 text-gray-800">Roll No:</span>
-                <span className="text-black font-bold">{data.rollNo}</span>
-              </div>
-              <div className="flex">
-                <span className="w-40 md:w-48 text-gray-800">Candidate Name:</span>
-                <span className="text-black font-bold uppercase">{data.candidateName}</span>
-              </div>
-              <div className="flex">
-                <span className="w-40 md:w-48 text-gray-800">Mother's Name:</span>
-                <span className="text-black font-bold uppercase">SAVITA DEVI</span>
-              </div>
-              <div className="flex">
-                <span className="w-40 md:w-48 text-gray-800">Father's Name:</span>
-                <span className="text-black font-bold uppercase">RAJESH KUMAR</span>
-              </div>
-              <div className="flex">
-                <span className="w-40 md:w-48 text-gray-800">School's Name:</span>
-                <span className="text-black font-bold uppercase">GOVT SR SEC SCHOOL</span>
-              </div>
-            </div>
+      <div className="bg-white p-6 md:p-10 border border-gray-300 shadow-sm mb-6">
+        <div className="text-center mb-8">
+          <h4 className="text-[#000080] font-bold text-lg uppercase mb-1">Senior School Certificate Examination (Class XII) Results 2024</h4>
+        </div>
 
-            <div className="overflow-x-auto">
-              <Table className="border border-[#000080]/30 min-w-[600px]">
-                <TableHeader className="bg-[#000080]">
-                  <TableRow className="hover:bg-transparent border-b border-[#000080]">
-                    <TableHead className="text-white font-bold border-r border-white/20 h-10 text-center text-xs">SUB CODE</TableHead>
-                    <TableHead className="text-white font-bold border-r border-white/20 h-10 text-xs">SUB NAME</TableHead>
-                    <TableHead className="text-white font-bold border-r border-white/20 h-10 text-center text-xs">THEORY</TableHead>
-                    <TableHead className="text-white font-bold border-r border-white/20 h-10 text-center text-xs">PRAC./IA/PROJ.</TableHead>
-                    <TableHead className="text-white font-bold border-r border-white/20 h-10 text-center text-xs">MARKS</TableHead>
-                    <TableHead className="text-white font-bold h-10 text-center text-xs">POSITIONAL GRADE</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody className="bg-white">
-                  {subjects.map((sub, idx) => (
-                    <TableRow key={idx} className="hover:bg-gray-50 border-b border-gray-200">
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs font-medium">{sub.code}</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-xs font-medium uppercase">{sub.name}</TableCell>
-                      <TableCell className={cn("border-r border-gray-200 py-2 text-center text-xs", sub.isRed && "text-red-600 font-bold")}>
-                        {sub.theory}
-                      </TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs">{sub.prac}</TableCell>
-                      <TableCell className={cn("border-r border-gray-200 py-2 text-center text-xs font-bold", sub.isRed ? "text-red-600" : "text-[#000080]")}>
-                        {sub.marks}
-                      </TableCell>
-                      <TableCell className={cn("py-2 text-center text-xs font-bold", sub.isRed && "text-red-600")}>
-                        {sub.grade}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                  
-                  {workSubjects.map((sub, idx) => (
-                    <TableRow key={`work-${idx}`} className="hover:bg-gray-50 border-b border-gray-200">
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs font-medium">{sub.code}</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-xs font-medium uppercase">{sub.name}</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs">—</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs">—</TableCell>
-                      <TableCell className="border-r border-gray-200 py-2 text-center text-xs">—</TableCell>
-                      <TableCell className="py-2 text-center text-xs font-bold">{sub.grade}</TableCell>
-                    </TableRow>
-                  ))}
-
-                  <TableRow className="bg-[#000080] border-t-2 border-[#000080]">
-                    <TableCell colSpan={6} className="py-2 text-center font-bold text-white text-sm">
-                      Result : PASS
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </div>
-
-            <div className="pt-4 mt-4">
-              <p className="text-xs font-bold text-gray-700 mb-1">Abbreviation used:</p>
-              <p className="text-[10px] text-gray-500 leading-tight">
-                PR : Practical, IA : Internal Assessment, PROJ. : Project, AB : Absent, EX : Exempted, NA : Not Applicable, RT : Repeat in Theory, RP : Repeat in Practical
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center gap-4 mt-12 no-print">
-              <button 
-                onClick={() => window.print()}
-                className="text-xs text-blue-600 hover:underline font-semibold"
-              >
-                Print this page
-              </button>
-              
-              <div className="p-4 bg-yellow-50 border border-yellow-200 rounded w-full max-w-md text-center">
-                <h4 className="text-sm font-bold text-yellow-800 uppercase tracking-widest mb-1">Prank Successful!</h4>
-                <p className="text-xs text-yellow-700 mb-3">
-                  This mock result page is for entertainment purposes. You just got pranked!
-                </p>
-                <button 
-                  onClick={() => window.location.reload()}
-                  className="bg-white border border-gray-300 text-gray-700 px-4 py-1 text-xs font-bold hover:bg-gray-50 shadow-sm"
-                >
-                  Back to Login
-                </button>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 gap-2 mb-8 text-[15px]">
+          <div className="flex border-b border-gray-100 py-1">
+            <span className="w-48 font-bold text-gray-700">Roll No:</span>
+            <span className="font-bold">{data.rollNo}</span>
           </div>
-        </CardContent>
-      </Card>
+          <div className="flex border-b border-gray-100 py-1">
+            <span className="w-48 font-bold text-gray-700">Candidate Name:</span>
+            <span className="font-bold uppercase">{data.candidateName}</span>
+          </div>
+          <div className="flex border-b border-gray-100 py-1">
+            <span className="w-48 font-bold text-gray-700">Mother's Name:</span>
+            <span className="font-bold uppercase">SAVITA DEVI</span>
+          </div>
+          <div className="flex border-b border-gray-100 py-1">
+            <span className="w-48 font-bold text-gray-700">Father's Name:</span>
+            <span className="font-bold uppercase">RAJESH KUMAR</span>
+          </div>
+          <div className="flex border-b border-gray-100 py-1">
+            <span className="w-48 font-bold text-gray-700">School's Name:</span>
+            <span className="font-bold uppercase">GOVT SR SEC SCHOOL</span>
+          </div>
+        </div>
+
+        <div className="overflow-x-auto">
+          <Table className="border-collapse border border-gray-400 w-full text-[14px]">
+            <TableHeader>
+              <TableRow className="bg-[#00CCCC] hover:bg-[#00CCCC] border-b border-gray-400">
+                <TableHead className="text-white font-bold border-r border-gray-400 text-center uppercase h-10">Sub Code</TableHead>
+                <TableHead className="text-white font-bold border-r border-gray-400 uppercase h-10">Sub Name</TableHead>
+                <TableHead className="text-white font-bold border-r border-gray-400 text-center uppercase h-10">Theory</TableHead>
+                <TableHead className="text-white font-bold border-r border-gray-400 text-center uppercase h-10">Prac/IA</TableHead>
+                <TableHead className="text-white font-bold border-r border-gray-400 text-center uppercase h-10">Marks</TableHead>
+                <TableHead className="text-white font-bold text-center uppercase h-10">Grade</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {subjects.map((sub, idx) => (
+                <TableRow key={idx} className={cn("hover:bg-transparent border-b border-gray-400", idx % 2 === 1 ? "bg-[#F9F9F9]" : "bg-white")}>
+                  <TableCell className="border-r border-gray-400 py-2 text-center font-bold">{sub.code}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2 font-bold uppercase">{sub.name}</TableCell>
+                  <TableCell className={cn("border-r border-gray-400 py-2 text-center font-bold", sub.isRed && "text-red-600")}>{sub.theory}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2 text-center font-bold">{sub.prac}</TableCell>
+                  <TableCell className={cn("border-r border-gray-400 py-2 text-center font-bold", sub.isRed ? "text-red-600" : "text-black")}>{sub.marks}</TableCell>
+                  <TableCell className={cn("py-2 text-center font-bold", sub.isRed && "text-red-600")}>{sub.grade}</TableCell>
+                </TableRow>
+              ))}
+              {workSubjects.map((sub, idx) => (
+                <TableRow key={`work-${idx}`} className={cn("hover:bg-transparent border-b border-gray-400", (subjects.length + idx) % 2 === 1 ? "bg-[#F9F9F9]" : "bg-white")}>
+                  <TableCell className="border-r border-gray-400 py-2 text-center font-bold">{sub.code}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2 font-bold uppercase">{sub.name}</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2 text-center">—</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2 text-center">—</TableCell>
+                  <TableCell className="border-r border-gray-400 py-2 text-center">—</TableCell>
+                  <TableCell className="py-2 text-center font-bold">{sub.grade}</TableCell>
+                </TableRow>
+              ))}
+              <TableRow className="bg-[#003366] hover:bg-[#003366]">
+                <TableCell colSpan={6} className="py-2 text-center font-bold text-white text-base">
+                  Result : PASS
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+
+        <div className="mt-8 text-[12px] text-gray-600 leading-tight">
+          <p className="font-bold mb-1">Abbreviation used:</p>
+          <p>PR : Practical, IA : Internal Assessment, PROJ. : Project, AB : Absent, EX : Exempted, NA : Not Applicable, RT : Repeat in Theory, RP : Repeat in Practical</p>
+        </div>
+      </div>
+
+      <div className="text-center space-y-2 mt-8">
+        <p className="text-sm font-bold text-gray-700">
+          Brought to you by National Informatics Centre
+        </p>
+        <p className="text-[10px] text-gray-400 uppercase tracking-widest no-print">
+          Digital India — Power To Empower
+        </p>
+      </div>
       
-      <div className="mt-8 text-center text-[10px] text-gray-400 uppercase tracking-wider">
-        © 2024 National Informatics Centre. All rights reserved.
+      <div className="mt-12 p-4 bg-yellow-50 border border-yellow-200 text-center no-print">
+        <h4 className="text-sm font-bold text-yellow-800 uppercase mb-1">Prank Mode Active</h4>
+        <p className="text-xs text-yellow-700 mb-2">This is a simulated result page for entertainment.</p>
+        <button 
+          onClick={() => window.location.reload()}
+          className="bg-white border border-gray-300 text-gray-700 px-4 py-1 text-xs font-bold hover:bg-gray-50 shadow-sm"
+        >
+          Return to Login
+        </button>
       </div>
     </div>
   );

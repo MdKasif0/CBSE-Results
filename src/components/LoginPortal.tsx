@@ -48,68 +48,68 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-4">
-      <Card className="shadow-none border-t-4 border-t-[#2EC1C1] bg-white">
-        <CardContent className="pt-8">
+    <div className="max-w-2xl mx-auto mt-10 p-4 font-serif">
+      <Card className="shadow-md border-t-8 border-t-[#009999] bg-white rounded-none">
+        <CardContent className="pt-10 px-8 pb-10">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5 items-center">
               
-              <Label htmlFor="rollNo" className="text-gray-700 text-sm md:text-right font-semibold">Enter your Roll Number :</Label>
+              <Label htmlFor="rollNo" className="text-gray-800 text-[15px] md:text-right font-bold">Enter your Roll Number :</Label>
               <Input
                 id="rollNo"
                 name="rollNo"
                 required
-                className="w-full h-8 border-gray-300"
+                className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.rollNo}
                 onChange={handleChange}
               />
 
-              <Label htmlFor="schoolNo" className="text-gray-700 text-sm md:text-right font-semibold">Enter School No. :</Label>
+              <Label htmlFor="schoolNo" className="text-gray-800 text-[15px] md:text-right font-bold">Enter School No. :</Label>
               <Input
                 id="schoolNo"
                 name="schoolNo"
                 required
-                className="w-full h-8 border-gray-300"
+                className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.schoolNo}
                 onChange={handleChange}
               />
 
-              <Label htmlFor="dob" className="text-gray-700 text-sm md:text-right font-semibold">Enter Date of Birth (dd/mm/yyyy) :</Label>
+              <Label htmlFor="dob" className="text-gray-800 text-[15px] md:text-right font-bold">Enter Date of Birth :</Label>
               <Input
                 id="dob"
                 name="dob"
                 placeholder="dd/mm/yyyy"
                 required
-                className="w-full h-8 border-gray-300"
+                className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.dob}
                 onChange={handleChange}
               />
 
-              <Label htmlFor="admitCardId" className="text-gray-700 text-sm md:text-right font-semibold">Enter Admit Card ID. :</Label>
+              <Label htmlFor="admitCardId" className="text-gray-800 text-[15px] md:text-right font-bold">Enter Admit Card ID. :</Label>
               <Input
                 id="admitCardId"
                 name="admitCardId"
                 required
-                className="w-full h-8 border-gray-300"
+                className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.admitCardId}
                 onChange={handleChange}
               />
 
-              <Label htmlFor="candidateName" className="text-gray-700 text-sm md:text-right font-semibold">Enter Candidate Name :</Label>
+              <Label htmlFor="candidateName" className="text-gray-800 text-[15px] md:text-right font-bold">Enter Candidate Name :</Label>
               <Input
                 id="candidateName"
                 name="candidateName"
                 required
-                className="w-full h-8 border-gray-300"
+                className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.candidateName}
                 onChange={handleChange}
               />
             </div>
 
-            <div className="flex justify-center gap-4 pt-4">
+            <div className="flex justify-center gap-6 pt-6">
               <Button 
                 type="submit" 
-                className="bg-[#2EC1C1] hover:bg-[#25A9A9] text-white font-bold px-8 rounded-none transition-all"
+                className="bg-[#009999] hover:bg-[#007777] text-white font-bold px-10 rounded-none transition-all shadow-sm h-9"
               >
                 Submit
               </Button>
@@ -117,7 +117,7 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
                 type="button" 
                 onClick={handleReset}
                 variant="outline" 
-                className="border-gray-300 text-gray-700 font-bold px-8 rounded-none hover:bg-gray-50 transition-all"
+                className="border-gray-400 text-gray-700 font-bold px-10 rounded-none hover:bg-gray-50 transition-all h-9"
               >
                 Reset
               </Button>
@@ -126,9 +126,11 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
         </CardContent>
       </Card>
       
-      <p className="text-xs text-center text-gray-500 mt-8 leading-relaxed">
-        Disclaimer: Neither NIC nor CBSE is responsible for any inadvertent error that may have crept in the results being published on NET. The results published on net are for immediate information to the examinees. These cannot be treated as original mark sheets. Original mark sheets have been issued by the Board separately.
-      </p>
+      <div className="mt-10 bg-white p-4 border border-gray-300 shadow-sm">
+        <p className="text-[12px] text-justify text-gray-600 leading-relaxed italic">
+          Disclaimer: Neither NIC nor CBSE is responsible for any inadvertent error that may have crept in the results being published on NET. The results published on net are for immediate information to the examinees. These cannot be treated as original mark sheets. Original mark sheets have been issued by the Board separately.
+        </p>
+      </div>
     </div>
   );
 }
