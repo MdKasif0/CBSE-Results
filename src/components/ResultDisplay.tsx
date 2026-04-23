@@ -132,7 +132,7 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
               ))}
               <TableRow className="bg-[#003366] hover:bg-[#003366]">
                 <TableCell colSpan={6} className="py-3 text-center font-bold text-white text-base">
-                  Result : PASS
+                  Result : FAIL
                 </TableCell>
               </TableRow>
             </TableBody>
