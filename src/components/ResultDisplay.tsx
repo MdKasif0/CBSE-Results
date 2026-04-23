@@ -31,8 +31,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       if (total >= 91) return 'A1';
       if (total >= 81) return 'A2';
       if (total >= 71) return 'B1';
-      if (total >= 81) return 'A2'; // Slightly different logic per request mappings if needed, but using standard
-      if (total >= 71) return 'B1';
       if (total >= 61) return 'B2';
       if (total >= 51) return 'C1';
       if (total >= 41) return 'C2';
@@ -179,17 +177,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
         <p className="text-[10px] text-gray-400 uppercase tracking-widest">
           Digital India — Power To Empower
         </p>
-      </div>
-      
-      <div className="mt-12 p-4 bg-yellow-50 border border-yellow-200 text-center no-print">
-        <h4 className="text-sm font-bold text-yellow-800 uppercase mb-1">Prank Mode Active</h4>
-        <p className="text-xs text-yellow-700 mb-2">Personal details are blurred for privacy — hover over them to reveal. This result is simulated.</p>
-        <button 
-          onClick={() => window.location.reload()}
-          className="bg-white border border-gray-300 text-gray-700 px-4 py-1 text-xs font-bold hover:bg-gray-50 shadow-sm"
-        >
-          Return to Login
-        </button>
       </div>
     </div>
   );

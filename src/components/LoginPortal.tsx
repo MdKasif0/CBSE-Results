@@ -132,12 +132,6 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
           </form>
         </CardContent>
       </Card>
-      
-      <div className="mt-10 bg-white p-4 border border-gray-300 shadow-sm">
-        <p className="text-[12px] text-justify text-gray-600 leading-relaxed italic">
-          Disclaimer: Neither NIC nor CBSE is responsible for any inadvertent error that may have crept in the results being published on NET. The results published on net are for immediate information to the examinees. These cannot be treated as original mark sheets. Original mark sheets have been issued by the Board separately.
-        </p>
-      </div>
     </div>
   );
 }
