@@ -13,6 +13,7 @@ interface LoginPortalProps {
 export interface FormData {
   rollNo: string;
   schoolNo: string;
+  schoolName: string;
   dob: string;
   admitCardId: string;
   candidateName: string;
@@ -22,6 +23,7 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
   const [formData, setFormData] = useState<FormData>({
     rollNo: '',
     schoolNo: '',
+    schoolName: '',
     dob: '',
     admitCardId: '',
     candidateName: '',
@@ -36,6 +38,7 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
     setFormData({
       rollNo: '',
       schoolNo: '',
+      schoolName: '',
       dob: '',
       admitCardId: '',
       candidateName: '',
@@ -76,6 +79,16 @@ export default function LoginPortal({ onSubmit }: LoginPortalProps) {
                 required
                 className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
                 value={formData.schoolNo}
+                onChange={handleChange}
+              />
+
+              <Label htmlFor="schoolName" className="text-gray-800 text-[15px] md:text-right font-bold">Enter School Name :</Label>
+              <Input
+                id="schoolName"
+                name="schoolName"
+                required
+                className="w-full h-8 border-gray-400 rounded-none focus:ring-[#009999] font-bold"
+                value={formData.schoolName}
                 onChange={handleChange}
               />
 

@@ -39,25 +39,20 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
     };
 
     const generateResult = (): Subject[] => {
-      // English Core [301]
       const engTheory = getRandom(50, 60);
       const engTotal = engTheory + 20;
 
-      // Physics [042] - Fail scenario
       const phyTheory = getRandom(5, 10);
       const phyPrac = getRandom(20, 25);
       const phyTotal = phyTheory + phyPrac;
 
-      // Chemistry [043]
       const chemTheory = getRandom(30, 50);
       const chemTotal = chemTheory + 30;
 
-      // Mathematics [041]
       const mathTheory = getRandom(30, 40);
       const mathPrac = getRandom(20, 25);
       const mathTotal = mathTheory + mathPrac;
 
-      // Music [031]
       const musicTheory = getRandom(10, 20);
       const musicPrac = getRandom(60, 70);
       const musicTotal = musicTheory + musicPrac;
@@ -100,25 +95,17 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
         </div>
 
         <div className="grid grid-cols-1 gap-1 mb-8 text-[15px]">
-          <div className="flex border-b border-gray-100 py-1.5 group cursor-help">
+          <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">Roll No:</span>
-            <span className="font-bold blur-[3px] group-hover:blur-none transition-all duration-300">{data.rollNo}</span>
+            <span className="font-bold">{data.rollNo}</span>
           </div>
-          <div className="flex border-b border-gray-100 py-1.5 group cursor-help">
+          <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">Candidate Name:</span>
-            <span className="font-bold uppercase blur-[3px] group-hover:blur-none transition-all duration-300">{data.candidateName}</span>
-          </div>
-          <div className="flex border-b border-gray-100 py-1.5">
-            <span className="w-48 font-bold text-gray-700">Mother's Name:</span>
-            <span className="font-bold uppercase">SAVITA DEVI</span>
-          </div>
-          <div className="flex border-b border-gray-100 py-1.5">
-            <span className="w-48 font-bold text-gray-700">Father's Name:</span>
-            <span className="font-bold uppercase">RAJESH KUMAR</span>
+            <span className="font-bold uppercase">{data.candidateName}</span>
           </div>
           <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">School's Name:</span>
-            <span className="font-bold uppercase">GOVT SR SEC SCHOOL</span>
+            <span className="font-bold uppercase">{data.schoolName}</span>
           </div>
         </div>
 
