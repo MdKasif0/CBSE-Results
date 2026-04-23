@@ -69,12 +69,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
     setSubjects(generateResult());
   }, []);
 
-  const workSubjects = [
-    { code: '500', name: 'WORK EXPERIENCE', grade: 'A1' },
-    { code: '502', name: 'PHY & HEALTH EDUCA', grade: 'A1' },
-    { code: '503', name: 'GENERAL STUDIES', grade: 'A1' },
-  ];
-
   if (!isMounted) return null;
 
   return (
@@ -134,16 +128,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
                   <TableCell className="border-r border-gray-400 py-2.5 text-center font-bold">{sub.prac}</TableCell>
                   <TableCell className={cn("border-r border-gray-400 py-2.5 text-center font-bold", sub.isRed ? "text-red-600" : "text-black")}>{sub.marks}</TableCell>
                   <TableCell className={cn("py-2.5 text-center font-bold", sub.isRed && "text-red-600")}>{sub.grade}</TableCell>
-                </TableRow>
-              ))}
-              {workSubjects.map((sub, idx) => (
-                <TableRow key={`work-${idx}`} className={cn("hover:bg-transparent border-b border-gray-400", (subjects.length + idx) % 2 === 1 ? "bg-[#F9F9F9]" : "bg-white")}>
-                  <TableCell className="border-r border-gray-400 py-2 text-center font-bold">{sub.code}</TableCell>
-                  <TableCell className="border-r border-gray-400 py-2 font-bold uppercase">{sub.name}</TableCell>
-                  <TableCell className="border-r border-gray-400 py-2 text-center">—</TableCell>
-                  <TableCell className="border-r border-gray-400 py-2 text-center">—</TableCell>
-                  <TableCell className="border-r border-gray-400 py-2 text-center">—</TableCell>
-                  <TableCell className="py-2 text-center font-bold">{sub.grade}</TableCell>
                 </TableRow>
               ))}
               <TableRow className="bg-[#003366] hover:bg-[#003366]">
