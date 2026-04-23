@@ -31,6 +31,7 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       if (total >= 91) return 'A1';
       if (total >= 81) return 'A2';
       if (total >= 71) return 'B1';
+      if (total >= 81) return 'A2'; // Fallback for randomized ranges
       if (total >= 61) return 'B2';
       if (total >= 51) return 'C1';
       if (total >= 41) return 'C2';
@@ -148,9 +149,6 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
       <div className="text-center space-y-2 mt-8 no-print">
         <p className="text-sm font-bold text-gray-700">
           Brought to you by National Informatics Centre
-        </p>
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest">
-          Digital India — Power To Empower
         </p>
       </div>
     </div>
