@@ -104,6 +104,10 @@ export default function ResultDisplay({ data }: ResultDisplayProps) {
             <span className="font-bold uppercase">{data.candidateName}</span>
           </div>
           <div className="flex border-b border-gray-100 py-1.5">
+            <span className="w-48 font-bold text-gray-700">Date of Birth:</span>
+            <span className="font-bold">{data.dob}</span>
+          </div>
+          <div className="flex border-b border-gray-100 py-1.5">
             <span className="w-48 font-bold text-gray-700">School's Name:</span>
             <span className="font-bold uppercase">{data.schoolName}</span>
           </div>
